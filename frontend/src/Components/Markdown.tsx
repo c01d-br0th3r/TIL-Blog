@@ -6,19 +6,19 @@ import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const InlineCode = styled.span`
   background-color: #dfdfdf;
-  padding: 3px 5px;
-  border-radius: 5px;
+  padding: 2px 5px;
+  border-radius: 0.3em;
   display: inline-block;
-  margin: 3px 0;
+  margin: 2px 0;
   font-family: "Fira Code", monospace;
-  font-size: 14px;
+  font-size: 1em;
   color: #0984e3;
   font-weight: 500;
 `;
 
 const BlockQuote = styled.div`
   padding: 10px 20px;
-  border-left: 5px solid #0984e3;
+  border-left: 0.5em solid #0984e3;
   background-color: #f2f2f2;
 `;
 
