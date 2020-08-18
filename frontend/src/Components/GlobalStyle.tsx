@@ -8,6 +8,9 @@ const GlobalStyle = createGlobalStyle`
             outline: none;
         }
     }
+    li {
+        all: unset;
+    }
     body, html {
         padding: 0;
         margin: 0;
