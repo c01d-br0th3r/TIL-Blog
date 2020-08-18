@@ -22,13 +22,6 @@ const BlockQuote = styled.div`
   background-color: #f2f2f2;
 `;
 
-const Code = styled.pre`
-  overflow: scroll;
-  background-color: #d2d2d2;
-  padding: 15px;
-  font-family: "Fira Code", monospace;
-`;
-
 const InlineCodeBlock: React.FC<{ value: string }> = ({ value }) => (
   <InlineCode>{value}</InlineCode>
 );

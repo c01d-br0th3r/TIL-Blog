@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import DOMPurify from "dompurify";
-import Markdown from "./Components/Markdown";
+import Markdown from "./Markdown";
 
 interface IData {
   id: number;
@@ -11,8 +10,6 @@ interface IData {
 }
 
 const App: React.FC<{}> = () => {
-  // XSS Shield
-  const sanitizer = DOMPurify.sanitize;
   const [data, setData] = useState<null | IData[]>(null);
   useEffect(() => {
     const fetchData = async () => {
