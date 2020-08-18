@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DOMPurify from "dompurify";
+import Markdown from "./Components/Markdown";
 
 interface IData {
   id: number;
@@ -30,12 +31,7 @@ const App: React.FC<{}> = () => {
           {data.map((d) => (
             <div key={d.id}>
               <div>Title: {d.title}</div>
-              <div
-                dangerouslySetInnerHTML={{ __html: sanitizer(d.summary) }}
-              ></div>
-              <div
-                dangerouslySetInnerHTML={{ __html: sanitizer(d.content) }}
-              ></div>
+              <Markdown source={d.summary} />
             </div>
           ))}
         </div>
