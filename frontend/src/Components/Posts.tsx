@@ -81,7 +81,7 @@ const Posts: React.FC<IDataProps> = ({ data }) => {
         {data.map((d) => (
           <Link to={`/${d.id}`} key={d.id}>
             <Card>
-              <img src={d.thumbnail} />
+              <img src={d.thumbnail} alt="thumbnail" />
               <Info>
                 <Title>{d.title}</Title>
                 <Summary>{d.summary}</Summary>
