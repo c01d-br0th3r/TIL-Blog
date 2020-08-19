@@ -47,7 +47,7 @@ const Detail: React.FC<RouteComponentProps<IMatch>> = ({ match }) => {
   const [data, setData] = useState<null | IData>(null);
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(`http://localhost:8000/api/${id}/`);
+      const { data } = await axios.get(`http://c01d-br0th3r.kr:8000/api/${id}`);
       setData(data);
     };
     fetchData();

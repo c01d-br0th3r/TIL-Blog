@@ -129,7 +129,7 @@ const Main: React.FC<{}> = () => {
   const [data, setData] = useState<IData[] | null>(null);
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(`http://localhost:8000/api/`);
+      const { data } = await axios.get(`http://c01d-br0th3r.kr:8000/api/`);
       setData(data);
     };
     fetchData();
