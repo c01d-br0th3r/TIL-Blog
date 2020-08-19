@@ -117,6 +117,14 @@ const Li = styled.div`
   margin-bottom: 0.4em;
 `;
 
+const Loader = styled.div`
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  padding: 5em;
+`;
+
 const Main: React.FC<{}> = () => {
   const [data, setData] = useState<IData[] | null>(null);
   useEffect(() => {
@@ -202,7 +210,15 @@ const Main: React.FC<{}> = () => {
       <TIL>
         <div>Today I Learned</div>
       </TIL>
-      {data === null ? <div>Loading ... </div> : <Posts data={data} />}
+      {data === null ? (
+        <Loader>
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </Loader>
+      ) : (
+        <Posts data={data} />
+      )}
     </Wrapper>
   );
 };

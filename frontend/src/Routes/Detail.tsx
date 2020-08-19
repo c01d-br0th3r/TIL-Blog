@@ -34,6 +34,14 @@ const Time = styled.div`
   margin-bottom: 2em;
 `;
 
+const Loader = styled.div`
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  padding: 5em;
+`;
+
 const Detail: React.FC<RouteComponentProps<IMatch>> = ({ match }) => {
   const id = match.params.id;
   const [data, setData] = useState<null | IData>(null);
@@ -49,7 +57,11 @@ const Detail: React.FC<RouteComponentProps<IMatch>> = ({ match }) => {
     <>
       <Header />
       {data === null ? (
-        <div>Loading ... </div>
+        <Loader>
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </Loader>
       ) : (
         <Container>
           <Wrapper key={data.id}>
