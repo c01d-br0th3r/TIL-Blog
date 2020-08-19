@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IData } from "../Interfaces";
+import { Link } from "react-router-dom";
 
 interface IDataProps {
   data: IData[];
@@ -20,6 +21,10 @@ const List = styled.div`
   max-width: 1280px;
   padding: 3em;
   padding-top: 0;
+  @media (max-width: 768px) {
+    padding: 2em;
+    padding-top: 0;
+  }
 `;
 
 const Card = styled.div`
@@ -30,8 +35,8 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  &:nth-child(1) {
-    padding-top: 0;
+  img {
+    width: 100%;
   }
 `;
 
@@ -43,6 +48,30 @@ const Info = styled.div`
 
 const Tags = styled.div`
   display: flex;
+  div {
+    margin-right: 0.6em;
+  }
+`;
+
+const Title = styled.div`
+  font-size: 1.4em;
+  font-weight: 600;
+  padding-top: 0.8em;
+`;
+
+const Summary = styled.div`
+  font-size: 1em;
+  opacity: 0.7;
+  padding: 0.7em 0;
+`;
+
+const Tag = styled.div`
+  font-size: 0.8em;
+  font-weight: 500;
+  background-color: #d2d2d2;
+  border-radius: 5px;
+  padding: 0.2em 0.5em;
+  color: #1e3799;
 `;
 
 const Posts: React.FC<IDataProps> = ({ data }) => {
@@ -50,18 +79,20 @@ const Posts: React.FC<IDataProps> = ({ data }) => {
     <Container>
       <List>
         {data.map((d) => (
-          <Card key={d.id}>
-            <img src={d.thumbnail} />
-            <Info>
-              <div>{d.title}</div>
-              <div>{d.summary}</div>
-              <Tags>
-                {d.tags.split(" ").map((t, index) => (
-                  <div key={index}>{t}</div>
-                ))}
-              </Tags>
-            </Info>
-          </Card>
+          <Link to={`/${d.id}`} key={d.id}>
+            <Card>
+              <img src={d.thumbnail} />
+              <Info>
+                <Title>{d.title}</Title>
+                <Summary>{d.summary}</Summary>
+                <Tags>
+                  {d.tags.split(" ").map((t, index) => (
+                    <Tag key={index}>{t}</Tag>
+                  ))}
+                </Tags>
+              </Info>
+            </Card>
+          </Link>
         ))}
       </List>
     </Container>

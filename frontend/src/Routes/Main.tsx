@@ -21,6 +21,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding: 2em;
+  }
 `;
 
 const Title = styled.span`
