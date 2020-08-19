@@ -10,5 +10,6 @@ class PostSerializer(serializers.ModelSerializer):
 				'content',
 				'thumbnail',
 				'tags',
+				'created_at',
 				)
 		model = Post
