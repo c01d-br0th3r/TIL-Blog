@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import Posts from "../Components/Posts";
+import { IData } from "../Interfaces";
 
 const Wrapper = styled.div`
   background-color: #121212;
   color: #f2f2f2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Container = styled.div`
   width: 100%;
+  max-width: 1280px;
   font-family: "Noto Sans KR", sans-serif !important;
   padding: 3em;
   display: flex;
@@ -107,6 +115,15 @@ const Li = styled.div`
 `;
 
 const Main: React.FC<{}> = () => {
+  const [data, setData] = useState<IData[] | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(`http://localhost:8000/api/`);
+      setData(data);
+    };
+    fetchData();
+  }, []);
+  console.log(data);
   return (
     <Wrapper>
       <Container>
@@ -138,12 +155,12 @@ const Main: React.FC<{}> = () => {
           <Info>
             <div>프론트엔드 개발자가 되고 싶습니다.</div>
             <div>
-              꾸미는 것을 좋아합니다. 사용자 친화적이고 "예쁜" 웹페이지를
+              꾸미는 것이 재밌습니다. 사용자 친화적이고 "예쁜" 웹페이지를
               좋아합니다.
             </div>
             <div>
               React와 Typescript의 매력을 알고 있기 때문에 잘 쓰기 위해
-              공부중입니다 .
+              공부중입니다.
             </div>
           </Info>
         </div>
@@ -182,6 +199,7 @@ const Main: React.FC<{}> = () => {
       <TIL>
         <div>Today I Learned</div>
       </TIL>
+      {data === null ? <div>Loading ... </div> : <Posts data={data} />}
     </Wrapper>
   );
 };
