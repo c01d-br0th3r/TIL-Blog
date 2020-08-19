@@ -5,6 +5,7 @@ export interface IData {
   summary: string;
   thumbnail: string;
   tags: string;
+  created_at: string;
 }
 
 export interface IMatch {
