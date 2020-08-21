@@ -6,12 +6,13 @@ const Container = styled.div`
   width: 100%;
   background-color: #121212;
   color: #fff;
-  padding: 0.5em 3em;
+  padding: 0 3em;
   display: flex;
   justify-content: center;
   @media (max-width: 768px) {
-    padding: 0.3em 2em;
+    padding: 0 2em;
   }
+  font-family: "Noto Sans KR", sans-serif !important;
 `;
 
 const Wrapper = styled.div`
@@ -20,13 +21,13 @@ const Wrapper = styled.div`
 `;
 
 const Nick = styled.div`
-  font-size: 3vw;
+  font-size: 3.4vw;
   font-weight: 600;
   @media (min-width: 1024px) {
-    font-size: 40px;
+    font-size: 48px;
   }
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 24px;
   }
 `;
 
