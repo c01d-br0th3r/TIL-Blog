@@ -19,6 +19,10 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   max-width: 1280px;
+  p img {
+    display: block;
+    margin: 0 auto;
+  }
 `;
 
 const Title = styled.div`

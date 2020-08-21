@@ -20,6 +20,9 @@ const BlockQuote = styled.div`
   padding: 10px 20px;
   border-left: 0.5em solid #0984e3;
   background-color: #f2f2f2;
+  p {
+    margin-top: 1em;
+  }
 `;
 
 const InlineCodeBlock: React.FC<{ value: string }> = ({ value }) => (
