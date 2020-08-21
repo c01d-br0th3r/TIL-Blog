@@ -8,8 +8,7 @@ function* workerSaga() {
   }
   try {
     const { data: posts } = yield call(getPosts);
-    console.log(posts);
-    yield put(allActions.postsActions.fetchDataSuccess(posts));
+    yield put(allActions.postsActions.fetchDataSuccess(posts.reverse()));
   } catch (err) {
     yield put(allActions.postsActions.fetchDataFail(err));
   }
