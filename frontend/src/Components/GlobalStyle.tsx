@@ -33,6 +33,9 @@ const GlobalStyle = createGlobalStyle`
             text-decoration: none;
         }
     }
+    hr {
+        margin: 3em 0;
+    }
     @media (min-width: 1024px) {
         html {
             font-size: 18px;
