@@ -6,12 +6,13 @@ import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const InlineCode = styled.span`
   background-color: #dfdfdf;
-  padding: 2px 5px;
+  padding: 0.05em 0.3em;
+  padding-top: 0.15em;
   border-radius: 0.3em;
   display: inline-block;
   margin: 2px 0;
   font-family: "Fira Code", monospace;
-  font-size: 1em;
+  font-size: 0.9em;
   color: #0984e3;
   font-weight: 500;
 `;

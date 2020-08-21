@@ -23,12 +23,15 @@ const Wrapper = styled.div`
     display: block;
     margin: 2em auto;
   }
+  a {
+    color: #0984e3;
+  }
 `;
 
 const Title = styled.div`
   margin-bottom: 0.3em;
   font-size: 2.5em;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 const Time = styled.div`
@@ -56,7 +59,6 @@ const Detail: React.FC<RouteComponentProps<IMatch>> = ({ match }) => {
     };
     fetchData();
   }, []);
-  console.log(data);
   return (
     <>
       <Header />

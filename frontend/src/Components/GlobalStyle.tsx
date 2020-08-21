@@ -19,9 +19,14 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.8vw;
         font-family: 'Noto Sans KR', sans-serif !important;
     }
+    h2 {
+        margin: 1.2em 0;
+        font-weight: 600;
+    }
     a {
         color: inherit;
         text-decoration: none;
+        margin: 0 0.1em;
         &:hover {
             color: inherit;
             cursor: pointer;

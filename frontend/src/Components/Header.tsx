@@ -6,11 +6,11 @@ const Container = styled.div`
   width: 100%;
   background-color: #121212;
   color: #fff;
-  padding: 1em 3em;
+  padding: 0.5em 3em;
   display: flex;
   justify-content: center;
   @media (max-width: 768px) {
-    padding: 0.7em 2em;
+    padding: 0.3em 2em;
   }
 `;
 
