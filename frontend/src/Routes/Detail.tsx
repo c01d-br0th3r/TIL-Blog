@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   max-width: 1280px;
   p img {
     display: block;
-    margin: 0 auto;
+    margin: 2em auto;
   }
 `;
 
