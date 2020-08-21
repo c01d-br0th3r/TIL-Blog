@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import Posts from "../Components/Posts";
-import { IData } from "../Interfaces";
+import { useSelector, useDispatch } from "react-redux";
+import { RootStore } from "../Store/reducers";
+import allActions from "../Store/actions";
 
 const Wrapper = styled.div`
   background-color: #121212;
@@ -126,15 +127,11 @@ const Loader = styled.div`
 `;
 
 const Main: React.FC<{}> = () => {
-  const [data, setData] = useState<IData[] | null>(null);
+  const posts = useSelector((store: RootStore) => store.posts);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(`http://c01d-br0th3r.kr:8000/api/`);
-      setData(data);
-    };
-    fetchData();
+    dispatch(allActions.postsActions.fetchData());
   }, []);
-  console.log(data);
   return (
     <Wrapper>
       <Container>
@@ -210,14 +207,14 @@ const Main: React.FC<{}> = () => {
       <TIL>
         <div>Today I Learned</div>
       </TIL>
-      {data === null ? (
+      {posts.lists.length === 0 ? (
         <Loader>
           <div className="spinner-border" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </Loader>
       ) : (
-        <Posts data={data} />
+        <Posts data={posts.lists} />
       )}
     </Wrapper>
   );
