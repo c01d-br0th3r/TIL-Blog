@@ -30,6 +30,7 @@ const List = styled.div`
 const Card = styled.div`
   width: 100%;
   padding: 1.5em 0;
+  padding-top: 0;
   border-bottom: 1px solid #c2c2c2;
   display: flex;
   flex-direction: column;
@@ -62,16 +63,17 @@ const Title = styled.div`
 const Summary = styled.div`
   font-size: 1em;
   opacity: 0.7;
-  padding: 0.7em 0;
+  padding: 0.5em 0;
+  padding-bottom: 0.8em;
 `;
 
 const Tag = styled.div`
   font-size: 0.8em;
-  font-weight: 500;
-  background-color: #d2d2d2;
+  font-weight: 600;
+  background-color: #dfdfdf;
   border-radius: 5px;
   padding: 0.2em 0.5em;
-  color: #1e3799;
+  color: #0984e3;
 `;
 
 const Posts: React.FC<IDataProps> = ({ data }) => {
