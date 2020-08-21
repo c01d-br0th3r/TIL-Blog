@@ -6,6 +6,7 @@ export interface IData {
   thumbnail: string;
   tags: string;
   created_at: string;
+  postNumber: string;
 }
 
 export interface IMatch {
