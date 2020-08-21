@@ -14,6 +14,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  font-family: "Noto Sans KR", sans-serif !important;
 `;
 
 const Wrapper = styled.div`
