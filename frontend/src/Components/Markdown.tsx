@@ -20,6 +20,7 @@ const InlineCode = styled.span`
 const BlockQuote = styled.div`
   padding: 10px 20px;
   border-left: 0.5em solid #0984e3;
+  margin-bottom: 1em;
   background-color: #f2f2f2;
   p {
     margin-top: 1em;
