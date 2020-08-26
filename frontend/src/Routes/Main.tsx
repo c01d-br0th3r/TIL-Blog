@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "styled-components";
 import Posts from "../Components/Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore } from "../Store/reducers";
 import allActions from "../Store/actions";
+import { IData } from "../Interfaces";
 
 const Wrapper = styled.div`
   background-color: #121212;
@@ -18,10 +19,10 @@ const Container = styled.div`
   width: 100%;
   max-width: 1280px;
   font-family: "Noto Sans KR", sans-serif !important;
-  padding: 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 3em;
   @media (max-width: 768px) {
     padding: 2em;
   }
@@ -84,19 +85,44 @@ const LightBlue = styled.span`
 `;
 const TIL = styled.div`
   width: 100%;
-  padding: 1em;
+  padding: 0.5em;
+  padding-top: 1.5em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #fff;
   color: #000;
   font-size: 2em;
   font-family: "Baloo Tamma 2", cursive;
-  div {
+  header {
     display: block;
-    border-bottom: 3px solid #c2c2c2;
     padding: 0 0.5em;
   }
+  i {
+    margin-left: 0.3em;
+    font-size: 0.7em;
+    color: #fff;
+    background-color: #222222;
+    padding: 0.5em;
+    border-radius: 2em;
+    position: relative;
+    bottom: 0.2em;
+  }
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+`;
+
+const TILBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.3em;
+`;
+
+const TILSearch = styled.div`
+  cursor: pointer;
 `;
 
 const Ul = styled.div`
@@ -126,12 +152,64 @@ const Loader = styled.div`
   padding: 5em;
 `;
 
+const TILWrapper = styled.div`
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+`;
+
+const TILInput = styled.div`
+  background-color: #fff;
+  color: #000;
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  padding: 1em 3em;
+  @media (max-width: 768px) {
+    padding: 1em 2em;
+  }
+  padding-top: 0.5em;
+`;
+
+const Input = styled.input`
+  all: unset;
+  font-family: "Noto Sans KR", sans-serif !important;
+  border-bottom: 3px solid #d2d2d2;
+  font-size: 1.3em;
+  padding: 0.2em 0.5em;
+  width: 100%;
+`;
+
 const Main: React.FC<{}> = () => {
+  const [filtered, setFiltered] = useState<IData[]>([]);
   const posts = useSelector((store: RootStore) => store.posts);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(allActions.postsActions.fetchData());
   }, []);
+
+  useEffect(() => {
+    setFiltered(posts.lists);
+  }, [posts.lists]);
+
+  const handleSearchClick = () => {
+    const inputDiv = document.querySelector(".search__input") as HTMLDivElement;
+    inputDiv.classList.toggle("hide");
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let {
+      target: { value },
+    } = e;
+    if (posts.lists.length !== 0) {
+      let filtered = posts.lists.filter((post) => post.title.includes(value));
+      setFiltered(filtered);
+    }
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -205,8 +283,22 @@ const Main: React.FC<{}> = () => {
         </Ul>
       </Container>
       <TIL>
-        <div>Today I Learned</div>
+        <TILBlock>
+          <header>Today I Learned</header>
+          <TILSearch onClick={handleSearchClick}>
+            <i className="fas fa-search"></i>
+          </TILSearch>
+        </TILBlock>
       </TIL>
+      <TILWrapper>
+        <TILInput className="search__input hide">
+          <Input
+            type="text"
+            placeholder="검색어를 입력하세요.."
+            onChange={handleChange}
+          />
+        </TILInput>
+      </TILWrapper>
       {posts.lists.length === 0 ? (
         <Loader>
           <div className="spinner-border" role="status">
@@ -214,7 +306,7 @@ const Main: React.FC<{}> = () => {
           </div>
         </Loader>
       ) : (
-        <Posts data={posts.lists} />
+        <Posts data={filtered} />
       )}
     </Wrapper>
   );

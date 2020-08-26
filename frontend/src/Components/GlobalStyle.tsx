@@ -46,6 +46,9 @@ const GlobalStyle = createGlobalStyle`
             font-size: 14px;
         }
     }
+    .hide {
+        display: none;
+    }
 `;
 
 export default GlobalStyle;

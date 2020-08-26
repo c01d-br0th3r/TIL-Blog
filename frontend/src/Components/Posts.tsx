@@ -76,27 +76,38 @@ const Tag = styled.div`
   color: #0984e3;
 `;
 
+const NoResult = styled.div`
+  padding: 5em 0;
+  font-size: 1.5em;
+  font-weight: 500;
+  opacity: 0.7;
+`;
+
 const Posts: React.FC<IDataProps> = ({ data }) => {
   return (
     <Container>
-      <List>
-        {data.map((d) => (
-          <Link to={`/posts/${d.id}`} key={d.id}>
-            <Card>
-              <img src={d.thumbnail} alt="thumbnail" />
-              <Info>
-                <Title>{d.title}</Title>
-                <Summary>{d.summary}</Summary>
-                <Tags>
-                  {d.tags.split(" ").map((t, index) => (
-                    <Tag key={index}>{t}</Tag>
-                  ))}
-                </Tags>
-              </Info>
-            </Card>
-          </Link>
-        ))}
-      </List>
+      {data.length === 0 ? (
+        <NoResult>검색 결과가 없습니다 :(</NoResult>
+      ) : (
+        <List>
+          {data.map((d) => (
+            <Link to={`/posts/${d.id}`} key={d.id}>
+              <Card>
+                <img src={d.thumbnail} alt="thumbnail" />
+                <Info>
+                  <Title>{d.title}</Title>
+                  <Summary>{d.summary}</Summary>
+                  <Tags>
+                    {d.tags.split(" ").map((t, index) => (
+                      <Tag key={index}>{t}</Tag>
+                    ))}
+                  </Tags>
+                </Info>
+              </Card>
+            </Link>
+          ))}
+        </List>
+      )}
     </Container>
   );
 };
