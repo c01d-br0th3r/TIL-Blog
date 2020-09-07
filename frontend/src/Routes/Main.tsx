@@ -205,7 +205,9 @@ const Main: React.FC<{}> = () => {
       target: { value },
     } = e;
     if (posts.lists.length !== 0) {
-      let filtered = posts.lists.filter((post) => post.title.includes(value));
+      let filtered = posts.lists.filter(
+        (post) => post.title.includes(value) || post.summary.includes(value)
+      );
       setFiltered(filtered);
     }
   };
